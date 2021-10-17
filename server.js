@@ -1,20 +1,20 @@
 const express = require('express');
 const connectDB = require('./config/db');
 
-const app = express();
+const expressApp = express();
 
 connectDB();
 
-app.use(express.json());
+expressApp.use(express.json());
 
-app.get('/', (req, res) => res.send('API is running'));
+expressApp.get('/', (req, res) => res.send('API is running'));
 
 //define routes
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/posts', require('./routes/api/posts'));
-app.use('/api/profile', require('./routes/api/profile'));
+expressApp.use('/api/users', require('./routes/api/users'));
+expressApp.use('/api/auth', require('./routes/api/auth'));
+expressApp.use('/api/posts', require('./routes/api/posts'));
+expressApp.use('/api/profile', require('./routes/api/profile'));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server is up and running on port ${PORT}`));
+expressApp.listen(PORT, () => console.log(`Server is up and running on http://localhost:${PORT}`));
